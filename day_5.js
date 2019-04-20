@@ -1,28 +1,32 @@
+'use strict';
+
 process.stdin.resume();
-process.stdin.setEncoding('ascii');
+process.stdin.setEncoding('utf-8');
 
-var input_stdin = "";
-var input_stdin_array = "";
-var input_currentline = 0;
+let inputString = '';
+let currentLine = 0;
 
-process.stdin.on('data', function (data) {
-    input_stdin += data;
+process.stdin.on('data', inputStdin => {
+    inputString += inputStdin;
 });
 
-process.stdin.on('end', function () {
-    input_stdin_array = input_stdin.split("\n");
-    main();    
+process.stdin.on('end', _ => {
+    inputString = inputString.replace(/\s*$/, '')
+        .split('\n')
+        .map(str => str.replace(/\s*$/, ''));
+
+    main();
 });
 
 function readLine() {
-    return input_stdin_array[input_currentline++];
+    return inputString[currentLine++];
 }
 
-/////////////// ignore above this line ////////////////////
+// My Code //
 
 function main() {
-    var n = parseInt(readLine());
-    for (var i = 1; i < 11; i++) {
-        console.log(n + ' x ' + i + ' = ' + n * i);
+    const n = parseInt(readLine(), 10);
+        for (var i = 1; i <= 10; i++){
+            console.log(n + " x " + i + " = " + n * i);
     }
 }
